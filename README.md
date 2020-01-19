@@ -1,24 +1,10 @@
-# README
+This is a sample app for bug reproduction.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# How to reproduce
 
-Things you may want to cover:
+- Launch the app with Sentry env variables:  SENTRY_PUBLIC_KEY=xx SENTRY_PROJECT_ID=xx rails s
+- Go to http://localhost:3000
 
-* Ruby version
+You can see that a standard HTTP error is shown, not the Rails error screen with the error details. Nothing appears in the console either.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+If you disable either `config.rails_activesupport_breadcrumbs = true` in config/initializers/raven.rb or `Oj::Rails.mimic_JSON()` in config/initializers/json.rb then the test page will correctly display Rails's error page.
